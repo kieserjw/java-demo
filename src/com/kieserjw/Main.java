@@ -1,12 +1,14 @@
 package com.kieserjw;
 
+import org.junit.runner.JUnitCore;
+
 public class Main {
 
     public static void main(String[] args) {
-        String inputFilename = "input.txt";
-        InputandAnalysis iaa = new InputandAnalysis(inputFilename);
-        iaa.inputFile();
-        iaa.analyseFile();
+        JUnitCore.runClasses(InputandAnalysisTest.class);
+        
+        String path = System.getProperty("user.dir");
+        FileScanner.scan(path);
     }
 
 }

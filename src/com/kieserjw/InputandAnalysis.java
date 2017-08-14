@@ -28,6 +28,10 @@ public class InputandAnalysis {
         this.sumNumbers = 0;
         this.mean = 0;
         this.median = 0;
+
+        this.inputFile();
+        this.analyseNumbers();
+        this.analyseStrings();
     }
 
     // read the file name specified into the array lists
@@ -68,39 +72,48 @@ public class InputandAnalysis {
 
     // calculate median, sum, and mean
     public void analyseNumbers() {
-        Collections.sort(this.numberList);
-        int middle = numberList.size() / 2;
-        if (numberList.size() % 2 == 1) {
-            this.median = numberList.get(middle);
-        } else {
-            this.median = (numberList.get(middle) + numberList.get(middle - 1)) / 2.0;
+        if (this.numberList.size() > 0) {
+            Collections.sort(this.numberList);
+            int middle = numberList.size() / 2;
+            if (numberList.size() % 2 == 1) {
+                this.median = numberList.get(middle);
+            } else {
+                this.median = (numberList.get(middle) + numberList.get(middle - 1)) / 2.0;
+            }
+            for (int i = 0; i < numberList.size(); i++) {
+                this.sumNumbers = numberList.get(i) + this.sumNumbers;
+            }
+            this.mean = this.sumNumbers / this.numberList.size();
         }
-        for (int i = 0; i < numberList.size(); i++) {
-            this.sumNumbers = numberList.get(i) + this.sumNumbers;
-        }
-        this.mean = this.sumNumbers / this.numberList.size();
+    }
+
+    // sort strings in reverse order
+    public void analyseStrings() {
+        Collections.sort(this.stringList, Collections.reverseOrder(String.CASE_INSENSITIVE_ORDER));
     }
 
     // print out the required information
     public void analyseFile() {
-        this.analyseNumbers();
-        System.out.println("Sum");
-        Utilities.printDecimal(this.getTotal());
-        System.out.println("Mean");
-        Utilities.printDecimal(this.getMean());
-        System.out.println("Median");
-        Utilities.printDecimal(this.getMedian());
-        System.out.println("Percentage of values that are numbers");
-        Utilities.printPercentage(this.getPercentageNumbers());
-        System.out.println(
-                "reverse alphabetical distinct list of strings found in the file with number of times that string appeared");
-        Collections.sort(this.stringList, Collections.reverseOrder(String.CASE_INSENSITIVE_ORDER));
-        for (int i = 0; i < this.stringList.size(); i++) {
-            String temp = this.stringList.get(i);
-            if (i == 0 || !temp.equals(this.stringList.get(i - 1))) {
-                System.out.println(temp + ": " + Collections.frequency(this.stringList, temp));
-            }
+        if (this.numberList.size() > 0) {
+            System.out.println("Sum");
+            Utilities.printDecimal(this.getTotal());
+            System.out.println("Mean");
+            Utilities.printDecimal(this.getMean());
+            System.out.println("Median");
+            Utilities.printDecimal(this.getMedian());
+            System.out.println("Percentage of values that are numbers");
+            Utilities.printPercentage(this.getPercentageNumbers());
+        }
+        if (this.stringList.size() > 0) {
+            System.out.println(
+                    "reverse alphabetical distinct list of strings found in the file with number of times that string appeared");
+            for (int i = 0; i < this.stringList.size(); i++) {
+                String temp = this.stringList.get(i);
+                if (i == 0 || !temp.equals(this.stringList.get(i - 1))) {
+                    System.out.println(temp + ": " + Collections.frequency(this.stringList, temp));
+                }
 
+            }
         }
     }
 
@@ -134,6 +147,14 @@ public class InputandAnalysis {
 
     public double getPercentageNumbers() {
         return this.numberList.size() / (double) (this.stringList.size() + this.numberList.size());
+    }
+
+    public ArrayList<String> getStringList() {
+        return this.stringList;
+    }
+
+    public ArrayList<Double> getNumberList() {
+        return this.numberList;
     }
 
 }
