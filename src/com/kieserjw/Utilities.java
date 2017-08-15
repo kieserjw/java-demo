@@ -3,7 +3,8 @@ package com.kieserjw;
 import java.text.DecimalFormat;
 
 public class Utilities {
-
+    
+    // prints number as int if possible, otherwise a double with two trailing digits
     public static String printDecimal(double d) {
         // select a "tolerance range" for being an integer
         double TOLERANCE = 1E-5;
@@ -13,10 +14,5 @@ public class Utilities {
             DecimalFormat f = new DecimalFormat("##.00");
             return f.format(d);
         }
-    }
-
-    public static String printPercentage(double d) {
-        DecimalFormat f = new DecimalFormat("##.00");
-        return f.format(d * 100) + "%";
     }
 }

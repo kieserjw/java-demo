@@ -8,6 +8,9 @@ import java.nio.file.Paths;
  * Scan all files and directories below a specified path on a local filesystem.
  */
 class FileScanner {
+    
+    // walk through the given directory and keep track of relevant stats
+    // ignores .gitkeep files.  they were necessary to maintain folder structure in git
     static ScanResult scan(String path) {
         ScanResult sr = new ScanResult();
         try {
@@ -46,12 +49,12 @@ class FileScanner {
             return this.numDirectories;
         }
 
-        // return the total number of bytes contained within all scanned _files_
+        // return the total number of bytes contained within all scanned files
         long getTotalBytes() {
             return this.totalBytes;
         }
 
-        // return the average size of the scanned _files_
+        // return the average size of the scanned files
         long getAvgBytes() {
             long avgBytes = 0;
             if (this.numFiles != 0) {

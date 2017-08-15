@@ -21,6 +21,7 @@ public class InputandAnalysis {
     }
 
     // create an instance with an input file name
+    // go through and input file and analyse for strings and numbers
     public InputandAnalysis(String inputFilename) {
         this.inputFilename = inputFilename;
         this.stringList = new ArrayList<String>();
@@ -58,6 +59,7 @@ public class InputandAnalysis {
         } catch (IOException e) {
             e.printStackTrace();
 
+            // error handling
         } finally {
             try {
                 if (br != null)
@@ -100,7 +102,7 @@ public class InputandAnalysis {
             resultString += "Mean: " + Utilities.printDecimal(this.getMean()) + System.lineSeparator();
             resultString += "Median: " + Utilities.printDecimal(this.getMedian()) + System.lineSeparator();
             resultString += "Percentage of values that are numbers: "
-                    + Utilities.printPercentage(this.getPercentageNumbers()) + System.lineSeparator();
+                    + Utilities.printDecimal(this.getPercentageNumbers() * 100) + "%" + System.lineSeparator();
         }
         if (this.stringList.size() > 0) {
             resultString += "reverse alphabetical distinct list of strings found in the file with number of times that string appeared: ";
