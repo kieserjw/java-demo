@@ -12,6 +12,7 @@
 To run the unit tests:
 * Open either of the *Test.java files
 * Run > Run as > JUnit Test
+
 To run the main program:
 * Open Main.java
 * Run > Run as > Java Application
