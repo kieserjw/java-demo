@@ -93,44 +93,34 @@ public class InputandAnalysis {
     }
 
     // print out the required information
-    public void analyseFile() {
+    public String toString() {
+        String resultString = "";
         if (this.numberList.size() > 0) {
-            System.out.println("Sum");
-            Utilities.printDecimal(this.getTotal());
-            System.out.println("Mean");
-            Utilities.printDecimal(this.getMean());
-            System.out.println("Median");
-            Utilities.printDecimal(this.getMedian());
-            System.out.println("Percentage of values that are numbers");
-            Utilities.printPercentage(this.getPercentageNumbers());
+            resultString += "Sum: " + Utilities.printDecimal(this.getTotal()) + System.lineSeparator();
+            resultString += "Mean: " + Utilities.printDecimal(this.getMean()) + System.lineSeparator();
+            resultString += "Median: " + Utilities.printDecimal(this.getMedian()) + System.lineSeparator();
+            resultString += "Percentage of values that are numbers: "
+                    + Utilities.printPercentage(this.getPercentageNumbers()) + System.lineSeparator();
         }
         if (this.stringList.size() > 0) {
-            System.out.println(
-                    "reverse alphabetical distinct list of strings found in the file with number of times that string appeared");
+            resultString += "reverse alphabetical distinct list of strings found in the file with number of times that string appeared: ";
             for (int i = 0; i < this.stringList.size(); i++) {
                 String temp = this.stringList.get(i);
                 if (i == 0 || !temp.equals(this.stringList.get(i - 1))) {
-                    System.out.println(temp + ": " + Collections.frequency(this.stringList, temp));
+                    resultString += System.lineSeparator() + temp + ": " + Collections.frequency(this.stringList, temp);
                 }
 
             }
         }
+        return resultString;
     }
 
     public double getMean() {
         return this.mean;
     }
 
-    public void setMean(double mean) {
-        this.mean = mean;
-    }
-
     public double getMedian() {
         return this.median;
-    }
-
-    public void setMedian(double median) {
-        this.median = median;
     }
 
     public double getTotal() {

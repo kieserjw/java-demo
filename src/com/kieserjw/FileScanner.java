@@ -17,7 +17,6 @@ class FileScanner {
                     try {
                         sr.totalBytes += Files.size(filePath);
                     } catch (IOException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                 } else if (Files.isDirectory(filePath)) {

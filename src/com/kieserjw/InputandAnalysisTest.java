@@ -47,14 +47,14 @@ public class InputandAnalysisTest {
         assertEquals(iaa.getMedian(), 5.50, 1E-5);
         assertEquals(iaa.getTotal(), 22.2, 1E-5);
         assertEquals(iaa.getPercentageNumbers(), .33333, 1E-5);
-        
+
         assertEquals(iaa.getStringList().size(), 8);
         String temp = iaa.getStringList().get(0);
         assertEquals(temp, "The quick brown fox");
         assertEquals(Collections.frequency(iaa.getStringList(), temp), 1);
-        
+
         // print out information to console
-        iaa.analyseFile();
+        System.out.println(iaa);
     }
 
 }
